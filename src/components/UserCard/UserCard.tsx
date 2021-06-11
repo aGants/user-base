@@ -1,9 +1,9 @@
 import React from 'react';
-import { Grid, Typography, ButtonBase } from '@material-ui/core'
-import './UserCard.scss';
+import { Grid, Paper, Typography, ButtonBase } from '@material-ui/core'
+import useStyles from './styleUserCard';
 
 export interface UserCardModel {
-  dob: {
+  registered: {
     age: number
     date: string
   }
@@ -22,18 +22,23 @@ interface PropsTypes {
 }
 
 export const UserCard = (props: PropsTypes) => {
-  const user = props.user
-
+  const user = props.user;
+  const date = (user.registered.date).substr(0, 10);
+  const classes = useStyles();
 
  return (
-    <div>
-      <Grid>
-        <img className="user-img" alt="avatar" src={user.picture.medium} />
+   <div className={classes.root}>
+    <Paper elevation={3} className={classes.paper}>
+      <Grid container>
+        <Grid item className={classes.image}>
+          <img className={classes.img} alt="avatar" src={user.picture.medium} />
+        </Grid>
+        <Grid className={classes.info} item direction="column">
+          <Typography gutterBottom>{user.name.first} {user.name.last}, дата регистрации: { date }</Typography>
+          <Typography >{user.email}</Typography>
+        </Grid>
       </Grid>
-      <Grid>
-        {user.name.first}
-        {user.name.last}
-      </Grid>
-    </div>
+    </Paper>
+  </div>
  )
 };

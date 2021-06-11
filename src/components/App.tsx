@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import 'fontsource-roboto';
-import { Container }  from '@material-ui/core';
+import { Container, Box }  from '@material-ui/core';
 import { UserCard, UserCardModel } from './UserCard/UserCard';
 import axios from 'axios'
 
@@ -23,7 +23,7 @@ const App: React.FC = () => {
     <Container className="App">
       {users.map((user: UserCardModel, key: number) => {
          return (
-          <UserCard user={user}/>
+          <UserCard key={key} user={user}/>
         )
       })}
     </Container>
