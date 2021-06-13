@@ -32,7 +32,7 @@ export const UserGroup = (props:IGroup) => {
       users.sort((userA: UserCardModel, userB: UserCardModel) =>
       {
         if (userA.registered.age > userB.registered.age) return 1;
-        if (userA.registered.age < userB.registered.age) return 0;
+        if (userA.registered.age < userB.registered.age) return -1;
         return 0;
       })
 
