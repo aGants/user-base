@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import 'fontsource-roboto';
-import { Container }  from '@material-ui/core';
+import { Container, Box}  from '@material-ui/core';
 import { UserCardModel } from './UserCard/UserCard';
 import axios from 'axios'
 import { UserGroup } from './UserGroup/UserGroup';
+import useStyles from './style';
 
 const App: React.FC = () => {
 
   const [users, setUsers] = useState<UserCardModel[]>([]);
+
+  const classes = useStyles();
 
   useEffect( () => {
     axios.get("https://randomuser.me/api/?results=10")
@@ -20,13 +22,18 @@ const App: React.FC = () => {
 
   let userList = [];
  
-  for (let min=1; min<100; min+=9) {
+  for (let min=1; min<40; min+=10) {
     userList.push(<UserGroup key={min} min={min} max={min+9} users={users} />)
   }
 
   return (
-    <Container className="App">
-      { userList }
+    <Container className={classes.root}>
+      <Box className={classes.List}>
+        { userList }
+      </Box>
+      <Box>
+
+      </Box>
     </Container>
   );
 }
