@@ -5,6 +5,12 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex'
     },
+    form: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(2),
+        width: '90%'
+      }
+    },
     List: {
       minWidth: '50%'
     },
