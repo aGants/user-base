@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserCard, UserCardModel } from '../UserCard/UserCard';
-import { List, ListItem, ListItemText, Collapse, Divider } from '@material-ui/core';
+import { List, ListItem, ListItemText, Collapse } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import useStyles from './style';
@@ -41,21 +41,29 @@ export const UserGroup = (props:IGroup) => {
   return (
     <List className={classes.root}>
 
-    <ListItem button onClick={handleClick} className={classes.group}>
-      <ListItemText color="primary"> {min} - {max} </ListItemText>
-      { open ? <ExpandLess /> : <ExpandMore /> }
-    </ListItem>
-    <Collapse in={open} timeout="auto" unmountOnExit>
-      <List component="div">
-        { result.map((user: UserCardModel, key: number) => {
-          return ( <UserCard key={key} user={user} /> )
-        }
-        )}
-      </List>
-      </Collapse>
+    { result[0] === undefined ? (
+      <ListItem button disabled>
+        <ListItemText color="primary"> {min} - {max} </ListItemText>
+        <ExpandMore /> 
+      </ListItem>
+    ) : (
+      <>
+        <ListItem button onClick={handleClick} className={classes.group}>
+          <ListItemText color="primary"> {min} - {max} </ListItemText>
+          { open ? <ExpandLess /> : <ExpandMore /> }
+        </ListItem>
 
-      <Divider />
-    
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div">
+            { result.map((user: UserCardModel, key: number) => {
+              return ( <UserCard key={key} user={user} /> )
+            }
+            )}
+          </List>
+        </Collapse>
+      </>
+    )
+  }
     </List>
   )
 }
