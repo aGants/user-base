@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import 'fontsource-roboto';
-import { Container, Box, TextField, Typography }  from '@material-ui/core';
-import { UserCardModel } from './UserCard/UserCard';
 import axios from 'axios'
-import { UserGroup } from './UserGroup/UserGroup';
+import { Container, Box, TextField, Typography }  from '@material-ui/core';
 import useStyles from './style';
-import Favorites from './Favorites/Favorites';
+import 'fontsource-roboto';
 import { FavContextProvider, favReducer, initialFavState } from '../context/FavContext';
+import { UserCardModel } from './UserCard/UserCard';
+import { UserGroup } from './UserGroup/UserGroup';
+import Favorites from './Favorites/Favorites';
 
 const App: React.FC = () => {
 

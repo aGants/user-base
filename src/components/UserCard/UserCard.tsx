@@ -1,7 +1,7 @@
 import React from 'react';
+import useStyles from './style';
 import { Grid, Paper, Typography, ListItem, IconButton } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
-import useStyles from './style';
 import FavContext from '../../context/FavContext';
 
 export interface UserCardModel {

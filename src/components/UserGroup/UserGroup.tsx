@@ -1,9 +1,9 @@
 import React from 'react';
-import { UserCard, UserCardModel } from '../UserCard/UserCard';
+import useStyles from './style';
 import { List, ListItem, ListItemText, Collapse } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import useStyles from './style';
+import { UserCard, UserCardModel } from '../UserCard/UserCard';
 
 interface IGroup {
   users: UserCardModel[],

@@ -1,6 +1,6 @@
 import React from 'react';
-import { UserCard  } from '../UserCard/UserCard';
 import { List }  from '@material-ui/core';
+import { UserCard  } from '../UserCard/UserCard';
 import FavContext from '../../context/FavContext';
 
 const Favorites: React.FC = () => {
