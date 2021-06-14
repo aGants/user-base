@@ -35,7 +35,7 @@ export const UserGroup = (props:IGroup) => {
         if (userA.registered.age < userB.registered.age) return -1;
         return 0;
       })
-
+      
   const result: UserCardModel[] = sortByAge(filterByAge(users, min, max))
 
   return (
@@ -55,8 +55,8 @@ export const UserGroup = (props:IGroup) => {
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div">
-            { result.map((user: UserCardModel, key: number) => {
-              return ( <UserCard key={key} user={user} /> )
+            { result.map((user: UserCardModel) => {
+              return ( <UserCard key={user.login.username} user={user} /> )
             }
             )}
           </List>
