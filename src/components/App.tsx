@@ -73,7 +73,7 @@ const App: React.FC = () => {
         </Box>
         <Box className={classes.column}>
           <Typography variant="h6" component="h1" className={classes.text} >
-            Избранное
+            Избранные
           </Typography>
           <FavContextProvider value={favContextValues}>
             <Favorites />
