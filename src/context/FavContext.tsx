@@ -1,23 +1,22 @@
 import React from 'react';
 import { UserCardModel } from '../components/UserCard/UserCard';
+export interface IFavState {
+  favs: { [key: string]: UserCardModel[] };
+}
+export interface IFavActions {
+  type: 'add_fav' | 'remove_fav';
+  payload: UserCardModel;
+}
+export interface IFavContextProps {
+  favState: IFavState;
+  favDispatch: React.Dispatch<IFavActions>;
+}
 
 export const initialFavState: IFavState = {
   favs: {}
 };
 
-export interface IFavActions {
-  type: 'add_fav' | 'remove_fav';
-  payload: UserCardModel;
-}
-
-export interface IFavState {
-  favs: { [key: string]: UserCardModel[] };
-}
-
 export const favReducer = (state: IFavState, action: IFavActions) => {
-
-  // const [favState, favDispatch] = React.useReducer(favReducer, initialFavState);
-  
   let fav = action.payload;
   let favs = { ...state.favs };
 
@@ -33,17 +32,11 @@ export const favReducer = (state: IFavState, action: IFavActions) => {
           delete favs[fav.login.username]
         };
 
-        console.log(favs)
           return { ...state, favs}
       default:
           return state;
   }
 };
-
-export interface IFavContextProps {
-  favState: IFavState;
-  favDispatch: React.Dispatch<IFavActions>;
-}
 
 const FavContext = React.createContext<IFavContextProps>({
   favState: initialFavState,

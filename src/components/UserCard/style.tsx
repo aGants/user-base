@@ -16,8 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'block',
       maxWidth: '100%',
       maxHeight: '100%',
+    },
+    drag: {
+      cursor: 'grab',
     }
-  }),
+    })
 );
 
 export default useStyles;

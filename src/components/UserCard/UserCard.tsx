@@ -3,6 +3,7 @@ import useStyles from './style';
 import { Grid, Paper, Typography, ListItem, IconButton } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import FavContext from '../../context/FavContext';
+import DragContext from '../../context/DragContext';
 
 export interface UserCardModel {
   login: {
@@ -28,6 +29,8 @@ export interface PropsTypes {
 }
 
 export const UserCard = (props: PropsTypes) => {
+  const dragContext = React.useContext(DragContext);
+
   const user = props.user;
   const date = (user.registered.date).substr(0, 10);
   const classes = useStyles();
@@ -35,37 +38,38 @@ export const UserCard = (props: PropsTypes) => {
 
   const favContext = React.useContext(FavContext);
 
-  function toAdd () {
-    if (!isFav) {
-      favContext.favDispatch({ type: 'add_fav', payload: user })
-    }
+  function dragStartHandler(e:any, user:any) {
+    dragContext.setCurrentDrag(user)
   }
 
  return (
-  <ListItem className={classes.root}
-    draggable={true} 
-    onClick={() => { toAdd()} }
-  >
+   <div className={'card'}>
+
+  <ListItem className={isFav ? (classes.root) : (`${classes.root} ${classes.drag}`)}
+    draggable={!isFav && true} 
+    onDragStart={(e) => dragStartHandler(e, user)}
+    >
     <Paper elevation={3} className={classes.card}>
       <Grid container spacing={3}>
         <Grid item xs={2} >
           <img className={classes.img} alt="avatar" src={user.picture.medium} />
         </Grid>
-        <Grid  sm item>
+        <Grid sm item className={'card'}>
           <Typography gutterBottom>{user.name.first} {user.name.last}, дата регистрации: { date }</Typography>
           <Typography >{user.email}</Typography>
         </Grid>
-          { isFav ? (
+          { isFav && (
             <Grid xs={2} item>
               <IconButton aria-label="delete"
                 onClick={()=> favContext.favDispatch({ type: 'remove_fav', payload: user })}
-              >
+                >
                 <DeleteIcon />
               </IconButton>
             </Grid>
-          ) : null }
+          )}
       </Grid>
     </Paper>
   </ListItem>
+          </div>
  )
 };

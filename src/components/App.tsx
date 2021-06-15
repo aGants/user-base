@@ -7,6 +7,7 @@ import { FavContextProvider, favReducer, initialFavState } from '../context/FavC
 import { UserCardModel } from './UserCard/UserCard';
 import { UserGroup } from './UserGroup/UserGroup';
 import Favorites from './Favorites/Favorites';
+import { DragContextPovider} from '../context/DragContext';
 
 const App: React.FC = () => {
 
@@ -44,6 +45,7 @@ const App: React.FC = () => {
 
   return (
     <Container className={classes.root}>
+      <DragContextPovider>
       <FavContextProvider value={favContextValues}>
       <Box className={classes.column}>
         <form className={classes.form} noValidate autoComplete="off">
@@ -63,6 +65,7 @@ const App: React.FC = () => {
         <Favorites />
       </Box>
       </FavContextProvider>
+      </DragContextPovider>
     </Container>
   );
 }

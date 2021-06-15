@@ -56,7 +56,8 @@ export const UserGroup = (props:IGroup) => {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div">
             { result.map((user: UserCardModel) => {
-              return ( <UserCard key={user.login.username} user={user} /> )
+              return ( <UserCard key={user.login.username} user={user} /> 
+              )
             }
             )}
           </List>

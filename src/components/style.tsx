@@ -18,11 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
     text: {
       textAlign: 'center',
       margin: theme.spacing(1),
-    },
-    list: {
-      flexDirection: 'column',
-      height: '100%',
-      overflow: 'hidden'
     }
   }),
 );
