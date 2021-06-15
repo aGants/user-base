@@ -6,7 +6,7 @@ const DragContext = React.createContext<IDragContextProps>({
   setCurrentDrag: () => {}
 });
 
-export const DragContextPovider: React.FC = (props) => {
+export const DragContextProvider: React.FC = (props) => {
     const [currentDrag, setCurrentDrag] = React.useState<UserCardModel>({} as UserCardModel);
     return(
         <DragContext.Provider value={{currentDrag, setCurrentDrag}}>

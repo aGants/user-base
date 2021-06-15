@@ -2,7 +2,7 @@ import React from "react";
 
 export interface UserCardModel {
   login: {
-    username: string
+    uuid: string
   },
   registered: {
     age: number

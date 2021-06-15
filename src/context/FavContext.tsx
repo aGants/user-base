@@ -11,14 +11,14 @@ export const favReducer = (state: IFavState, action: IFavActions) => {
 
   switch (action.type) {
       case 'add_fav':
-        favs[fav.login.username] = [fav];
+        favs[fav.login.uuid] = [fav];
           return { ...state, favs };
       case 'remove_fav':
 
-        favs[fav.login.username].pop();
+        favs[fav.login.uuid].pop();
 
-        if (favs[fav.login.username].length === 0) {
-          delete favs[fav.login.username]
+        if (favs[fav.login.uuid].length === 0) {
+          delete favs[fav.login.uuid]
         };
 
           return { ...state, favs}

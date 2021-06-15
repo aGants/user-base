@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drag: {
       cursor: 'grab',
+     '&:active': {
+        cursor: '-webkit-grabbing'
+     }
     }
     })
 );

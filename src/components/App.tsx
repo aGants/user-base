@@ -5,7 +5,7 @@ import useStyles from './style';
 import 'fontsource-roboto';
 import { UserCardModel } from '../types';
 import { FavContextProvider, favReducer, initialFavState } from '../context/FavContext';
-import { DragContextPovider} from '../context/DragContext';
+import { DragContextProvider} from '../context/DragContext';
 import { UserGroup } from './UserGroup/UserGroup';
 import Favorites from './Favorites/Favorites';
 import Loading from './Loading/Loading';
@@ -28,7 +28,7 @@ const App: React.FC = () => {
   const getRepos = async () => {
     try {
       setLoading(true)
-      await axios.get("https://randomuser.me/api/?results=10")
+      await axios.get("https://randomuser.me/api/?results=5000")
       .then(res => {
         setUsers(res.data.results);
       }); 
@@ -56,8 +56,8 @@ const App: React.FC = () => {
   return (
     <Container className={classes.root}>
     {loading ? <Loading /> : (
-      <DragContextPovider>
-        <FavContextProvider value={favContextValues}>
+       <DragContextProvider>
+
         <Box className={classes.column}>
           <form className={classes.form} noValidate autoComplete="off">
             <TextField 
@@ -67,17 +67,21 @@ const App: React.FC = () => {
               onChange={(event) => setValue(event.target.value)}
               />
           </form>
-          { userList }
+          <FavContextProvider value={favContextValues}>
+            { userList }
+          </FavContextProvider>
         </Box>
         <Box className={classes.column}>
           <Typography variant="h6" component="h1" className={classes.text} >
             Избранное
           </Typography>
-          <Favorites />
+          <FavContextProvider value={favContextValues}>
+            <Favorites />
+          </FavContextProvider>
         </Box>
-        </FavContextProvider>
-      </DragContextPovider>
+        </DragContextProvider>
     )}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     </Container>
   );
 }

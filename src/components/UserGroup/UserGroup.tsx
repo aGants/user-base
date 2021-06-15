@@ -6,7 +6,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import { IUserGroup, UserCardModel } from '../../types'
 import { UserCard } from '../UserCard/UserCard';
 
-export const UserGroup = (props:IUserGroup) => {
+export const UserGroup = React.memo((props:IUserGroup) => {
   const [open, setOpen] = React.useState(true);
 
   const users = props.users;
@@ -48,10 +48,10 @@ export const UserGroup = (props:IUserGroup) => {
           { open ? <ExpandLess /> : <ExpandMore /> }
         </ListItem>
 
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={open} unmountOnExit>
           <List component="div">
             { result.map((user: UserCardModel) => {
-              return ( <UserCard key={user.login.username} user={user} /> 
+              return ( <UserCard key={user.login.uuid} user={user} /> 
               )
             }
             )}
@@ -62,4 +62,4 @@ export const UserGroup = (props:IUserGroup) => {
   }
     </List>
   )
-}
+});

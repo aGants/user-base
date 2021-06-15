@@ -30,7 +30,7 @@ export const UserCard = (props: UserCardPropsTypes) => {
     <Paper elevation={3} className={classes.card}>
       <Grid container spacing={3}>
         <Grid item xs={2} >
-          <img className={classes.img} alt="avatar" src={user.picture.medium} />
+          <img className={classes.img} width="70" height="70" alt="avatar" src={user.picture.medium} />
         </Grid>
         <Grid sm item className={'card'}>
           <Typography gutterBottom>{user.name.first} {user.name.last}, дата регистрации: { date }</Typography>

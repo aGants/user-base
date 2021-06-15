@@ -38,7 +38,7 @@ const Favorites: React.FC = () => {
       { Object.keys(favContext.favState.favs).map((user) => {
         let _favs = favContext.favState.favs[user];
         if (_favs.length > 0) {
-          return ( <UserCard key={_favs[0].login.username} user={_favs[0]} favorite/> )
+          return ( <UserCard key={_favs[0].login.uuid} user={_favs[0]} favorite/> )
         } else return null;
       }
       )}
