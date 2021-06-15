@@ -29,7 +29,7 @@ const Favorites: React.FC = () => {
   }
 
   return (
-    <List component="div" className={drag ? (`${classes.drop}`) : (`${classes.root}`)}
+    <List component="div" className={drag ? (`${classes.drop} `) : (`${classes.root}`)}
       onDragStart={(e:any)=>dragStartHandler(e)}
       onDragLeave={(e:any)=>dragLeaveHandler(e)}
       onDragOver={(e:any)=>dragStartHandler(e)}

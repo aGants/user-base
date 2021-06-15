@@ -8,11 +8,13 @@ import { UserCardModel } from './UserCard/UserCard';
 import { UserGroup } from './UserGroup/UserGroup';
 import Favorites from './Favorites/Favorites';
 import { DragContextPovider} from '../context/DragContext';
+import Loading from './Loading/Loading';
 
 const App: React.FC = () => {
 
   const [users, setUsers] = useState<UserCardModel[]>([]);
   const [value, setValue] = useState<String>('');
+  const [loading, setLoading] = useState(false);
 
   const [favState, favDispatch] = React.useReducer(favReducer, initialFavState);
 
@@ -23,14 +25,22 @@ const App: React.FC = () => {
 
   const classes = useStyles();
 
-
-  useEffect( () => {
-    axios.get("https://randomuser.me/api/?results=10")
+  const getRepos = async () => {
+    try {
+      setLoading(true)
+      await axios.get("https://randomuser.me/api/?results=10")
       .then(res => {
         setUsers(res.data.results);
-      })
-      .catch(error => console.log(error))
-  }, []);  
+      }); 
+      setLoading(false)
+    } catch (e) {
+      console.log(e)
+      setLoading(false)
+    }
+  };
+
+
+  useEffect( () => { getRepos() }, []);  
 
   const searchUser = users.filter((user: any)  => {
     return user.name.first.toLowerCase().includes(value.toLowerCase()) 
@@ -45,27 +55,29 @@ const App: React.FC = () => {
 
   return (
     <Container className={classes.root}>
+    {loading ? <Loading /> : (
       <DragContextPovider>
-      <FavContextProvider value={favContextValues}>
-      <Box className={classes.column}>
-        <form className={classes.form} noValidate autoComplete="off">
-          <TextField 
-            label="Поиск"
-            placeholder="Поиск"
-            multiline
-            onChange={(event) => setValue(event.target.value)}
-            />
-        </form>
-        { userList }
-      </Box>
-      <Box className={classes.column}>
-        <Typography variant="h6" component="h1" className={classes.text} >
-          Избранное
-        </Typography>
-        <Favorites />
-      </Box>
-      </FavContextProvider>
+        <FavContextProvider value={favContextValues}>
+        <Box className={classes.column}>
+          <form className={classes.form} noValidate autoComplete="off">
+            <TextField 
+              label="Поиск"
+              placeholder="Поиск"
+              multiline
+              onChange={(event) => setValue(event.target.value)}
+              />
+          </form>
+          { userList }
+        </Box>
+        <Box className={classes.column}>
+          <Typography variant="h6" component="h1" className={classes.text} >
+            Избранное
+          </Typography>
+          <Favorites />
+        </Box>
+        </FavContextProvider>
       </DragContextPovider>
+    )}
     </Container>
   );
 }
