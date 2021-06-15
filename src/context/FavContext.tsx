@@ -1,16 +1,5 @@
 import React from 'react';
-import { UserCardModel } from '../components/UserCard/UserCard';
-export interface IFavState {
-  favs: { [key: string]: UserCardModel[] };
-}
-export interface IFavActions {
-  type: 'add_fav' | 'remove_fav';
-  payload: UserCardModel;
-}
-export interface IFavContextProps {
-  favState: IFavState;
-  favDispatch: React.Dispatch<IFavActions>;
-}
+import { IFavState, IFavActions, IFavContextProps  } from '../types';
 
 export const initialFavState: IFavState = {
   favs: {}

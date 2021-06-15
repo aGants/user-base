@@ -1,10 +1,5 @@
 import React from 'react';
-import { UserCardModel } from '../components/UserCard/UserCard';
-
-export interface IDragContextProps {
-  currentDrag: UserCardModel;
-  setCurrentDrag: React.Dispatch<UserCardModel>;
-}
+import { IDragContextProps, UserCardModel } from '../types';
 
 const DragContext = React.createContext<IDragContextProps>({
   currentDrag: {} as any,

@@ -2,33 +2,11 @@ import React from 'react';
 import useStyles from './style';
 import { Grid, Paper, Typography, ListItem, IconButton } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
+import { UserCardPropsTypes } from '../../types';
 import FavContext from '../../context/FavContext';
 import DragContext from '../../context/DragContext';
 
-export interface UserCardModel {
-  login: {
-    username: string
-  },
-  registered: {
-    age: number
-    date: string
-  }
-  name: {
-    first: string
-    last: string
-  }
-  email: string
-  picture: {
-   medium: string
-  }
-}
-
-export interface PropsTypes {
-  user:UserCardModel,
-  favorite?: boolean
-}
-
-export const UserCard = (props: PropsTypes) => {
+export const UserCard = (props: UserCardPropsTypes) => {
   const dragContext = React.useContext(DragContext);
 
   const user = props.user;

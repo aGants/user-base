@@ -3,11 +3,11 @@ import axios from 'axios'
 import { Container, Box, TextField, Typography }  from '@material-ui/core';
 import useStyles from './style';
 import 'fontsource-roboto';
+import { UserCardModel } from '../types';
 import { FavContextProvider, favReducer, initialFavState } from '../context/FavContext';
-import { UserCardModel } from './UserCard/UserCard';
+import { DragContextPovider} from '../context/DragContext';
 import { UserGroup } from './UserGroup/UserGroup';
 import Favorites from './Favorites/Favorites';
-import { DragContextPovider} from '../context/DragContext';
 import Loading from './Loading/Loading';
 
 const App: React.FC = () => {

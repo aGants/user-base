@@ -3,15 +3,10 @@ import useStyles from './style';
 import { List, ListItem, ListItemText, Collapse } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { UserCard, UserCardModel } from '../UserCard/UserCard';
+import { IUserGroup, UserCardModel } from '../../types'
+import { UserCard } from '../UserCard/UserCard';
 
-interface IGroup {
-  users: UserCardModel[],
-  min: number,
-  max: number
-}
-
-export const UserGroup = (props:IGroup) => {
+export const UserGroup = (props:IUserGroup) => {
   const [open, setOpen] = React.useState(true);
 
   const users = props.users;
@@ -68,4 +63,3 @@ export const UserGroup = (props:IGroup) => {
     </List>
   )
 }
-
